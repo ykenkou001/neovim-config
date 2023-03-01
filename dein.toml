@@ -1,0 +1,65 @@
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+hook_add = '''
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+map <C-n> :NERDTreeToggle<CR>
+'''
+[[plugins]]
+repo = 'easymotion/vim-easymotion'
+
+[[plugins]]
+repo = 'kqito/vim-easy-replace'
+
+[[plugins]]
+repo = 'tpope/vim-commentary'
+
+[[plugins]]
+repo = 'unblevable/quick-scope'
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'jalvesaq/Nvim-R'
+
+[[plugins]]
+repo = 'ncm2/ncm2'
+hook_add = '''
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
+'''
+
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+
+[[plugins]]
+repo = 'Raimondi/delimitMate'
+
+[[plugins]]
+repo = 'gaalcaras/ncm-R'
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+
+[[plugins]]
+repo = 'sirver/UltiSnips'
+
+[[plugins]]
+repo = 'ncm2/ncm2-ultisnips'
+
+[[plugins]]
+repo = 'ncm2/ncm2-bufword'
+
+[[plugins]]
+repo = 'ncm2/ncm2-path'
+
+[[plugins]]
+repo = 'autozimu/LanguageClient-neovim'
+rev = 'next'
+build = 'bash install.sh'
+hook_add = '''
+" source ~/.config/nvim/plugins/LanguageClient-neovim.rc.vim
+'''
+# [[plugins]]
+# repo = 'junegunn/fzf'
