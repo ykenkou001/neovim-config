@@ -62,21 +62,21 @@ hook_add = '''
 " source ~/.config/nvim/plugins/LanguageClient-neovim.rc.vim
 '''
 
-[[plugins]
+[[plugins]]
 repo = 'Shougo/deoplete.nvim'
 
-[[plugins]
+[[plugins]]
 repo = 'deoplete-plugins/deoplete-jedi'
 
 
-[[plugins]
+[[plugins]]
 repo = 'tbodt/deoplete-tabnine'
 build = 'bash ./install.sh'
 
-[[plugins]
+[[plugins]]
 repo = 'roxma/nvim-yarp'
 
-[[plugins]
+[[plugins]]
 repo = 'roxma/vim-hug-neovim-rpc'
 
 # [[plugins]]
