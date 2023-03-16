@@ -61,5 +61,26 @@ build = 'bash install.sh'
 hook_add = '''
 " source ~/.config/nvim/plugins/LanguageClient-neovim.rc.vim
 '''
+
+[[plugins]
+repo = 'Shougo/deoplete.nvim'
+
+[[plugins]
+repo = 'deoplete-plugins/deoplete-jedi'
+
+
+[[plugins]
+repo = 'tbodt/deoplete-tabnine'
+build = 'bash ./install.sh'
+
+[[plugins]
+repo = 'roxma/nvim-yarp'
+
+[[plugins]
+repo = 'roxma/vim-hug-neovim-rpc'
+
 # [[plugins]]
-# repo = 'junegunn/fzf'
+# repo = 'codota/tabnine-nvim'
+# build = './dl_binries.sh'
+
+
