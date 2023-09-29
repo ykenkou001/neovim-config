@@ -1,12 +1,27 @@
 [[plugins]]
 repo = 'scrooloose/nerdtree'
 hook_add = '''
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-map <C-n> :NERDTreeToggle<CR>
+	autocmd StdinReadPre * let s:std_in=1
+	autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+    map <C-n> :NERDTreeToggle<CR>
 '''
 [[plugins]]
 repo = 'easymotion/vim-easymotion'
+hook_add = '''
+map <leader>f <Plug>(easymotion-bd-f)
+nmap <leader>f <plug>(easymotion-overwin-f2)
+
+" s{char}{char} to move to {char}{char}
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Move to line
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
+'''
 
 [[plugins]]
 repo = 'kqito/vim-easy-replace'
@@ -17,70 +32,14 @@ repo = 'tpope/vim-commentary'
 [[plugins]]
 repo = 'unblevable/quick-scope'
 
-[[plugins]]
-repo = 'tpope/vim-surround'
-
-[[plugins]]
-repo = 'jalvesaq/Nvim-R'
-
-[[plugins]]
-repo = 'ncm2/ncm2'
-hook_add = '''
-autocmd BufEnter * call ncm2#enable_for_buffer()
-set completeopt=noinsert,menuone,noselect
-'''
-
-[[plugins]]
-repo = 'roxma/nvim-yarp'
-
-[[plugins]]
-repo = 'Raimondi/delimitMate'
-
-[[plugins]]
-repo = 'gaalcaras/ncm-R'
-
-[[plugins]]
-repo = 'itchyny/lightline.vim'
-
-[[plugins]]
-repo = 'sirver/UltiSnips'
-
-[[plugins]]
-repo = 'ncm2/ncm2-ultisnips'
-
-[[plugins]]
-repo = 'ncm2/ncm2-bufword'
-
-[[plugins]]
-repo = 'ncm2/ncm2-path'
-
-[[plugins]]
-repo = 'autozimu/LanguageClient-neovim'
-rev = 'next'
-build = 'bash install.sh'
-hook_add = '''
-" source ~/.config/nvim/plugins/LanguageClient-neovim.rc.vim
-'''
-
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-
-[[plugins]]
-repo = 'deoplete-plugins/deoplete-jedi'
-
-
-[[plugins]]
-repo = 'tbodt/deoplete-tabnine'
-build = 'bash ./install.sh'
-
-[[plugins]]
-repo = 'roxma/nvim-yarp'
-
-[[plugins]]
-repo = 'roxma/vim-hug-neovim-rpc'
-
 # [[plugins]]
-# repo = 'codota/tabnine-nvim'
-# build = './dl_binries.sh'
+# repo = 'tpope/vim-surround'
 
-
+[[plugins]]
+repo = 't9md/vim-quickhl'
+hook_add = '''
+	nmap <Space>m <Plug>(quickhl-manual-this)
+	xmap <Space>m <Plug>(quickhl-manual-this)
+	nmap <Space>M <Plug>(quickhl-manual-reset)
+	xmap <Space>M <Plug>(quickhl-manual-reset)
+'''

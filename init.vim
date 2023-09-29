@@ -1,121 +1,93 @@
-" プラグインが実際にインストールされるディレクトリ
-let $CACHE = expand('~/.cache')
-if !isdirectory($CACHE)
-  call mkdir($CACHE, 'p')
+" 下記参考にdein.vimをinstall
+" https://qiita.com/MickeyOoh/items/b47ab0b8b5fbbbad3793
+
+" Ward off unexpected things that your distro might have made, as
+" well as sanely reset options when re-sourcing .vimrc
+set nocompatible
+
+" Set Dein base path (required)
+" let s:dein_base = '/home/ykenkou07/.cache/dein'
+" Set Dein source path (required)
+" let s:dein_src = '/home/ykenkou07/.cache/dein/repos/github.com/Shougo/dein.vim'
+" Set Dein runtime path (required)
+" execute 'set runtimepath+=' . s:dein_src
+
+let s:cache_home = empty($XDG_CACHE_HOME) ? expand('~/.cache') : $XDG_CACHE_HOME
+let s:dein_dir = s:cache_home . '/dein'
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+if !isdirectory(s:dein_repo_dir)
+  call system('git clone https://github.com/Shougo/dein.vim ' . shellescape(s:dein_repo_dir))
 endif
-if &runtimepath !~# '/dein.vim'
-  let s:dein_dir = fnamemodify('dein.vim', ':p')
-  if !isdirectory(s:dein_dir)
-    let s:dein_dir = $CACHE .. '/dein/repos/github.com/Shougo/dein.vim'
-    if !isdirectory(s:dein_dir)
-      execute '!git clone https://github.com/Shougo/dein.vim' s:dein_dir
+
+let &runtimepath = s:dein_repo_dir .",". &runtimepath
+
+if exists('g:vscode') " VSCode extension
+
+else                  " ordinary Neovim
+    " プラグイン読み込み＆キャッシュ作成
+    let s:toml_file = fnamemodify(expand('<sfile>'), ':h').'/dein.toml'
+    if dein#load_state(s:dein_dir)
+        " Call Dein initialization (required)
+        call dein#begin(s:dein_dir)
+        call dein#load_toml(s:toml_file)
+        " Finish Dein initialization (required)
+        call dein#end()
+        call dein#save_state()
     endif
-  endif
-  execute 'set runtimepath^=' .. substitute(
-        \ fnamemodify(s:dein_dir, ':p') , '[/\\]$', '', '')
+
+    " 不足プラグインの自動インストール
+    if has('vim_starting') && dein#check_install()
+        call dein#install()
+    endif
 endif
 
-" 設定開始
-if dein#load_state(s:dein_dir)
-  call dein#begin(s:dein_dir)
-  " プラグインリストを収めた TOML ファイル
-  " 予め TOML ファイル（後述）を用意しておく
-  let g:rc_dir    = expand("~/.config/nvim")
-  let s:toml      = g:rc_dir . '/dein.toml'
-  let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
-  " TOML を読み込み、キャッシュしておく
-  call dein#load_toml(s:toml,      {'lazy': 0})
-  call dein#load_toml(s:lazy_toml, {'lazy': 1})
-  " 設定終了
-  call dein#end()
-  call dein#save_state()
+
+" Attempt to determine the type of a file based on its name and possibly its
+" contents. Use this to allow intelligent auto-indenting for each filetype,
+" and for plugins that are filetype specific.
+if has('filetype')
+  filetype indent plugin on
 endif
 
-" もし、未インストールものものがあったらインストール
-if dein#check_install()
-  call dein#install()
+" Enable syntax highlighting
+if has('syntax')
+  syntax on
 endif
-set number
-" プログラミング言語に合わせて適切にインデントを自動挿入
-set smartindent
-" set autoindent   " 改行時の自動インデント
-set tabstop=4    " タブの空白数
-set shiftwidth=4 " 自動インデント時に入力する空白数
-set splitright   " 画面を縦分割する際に右に開く 
-set list
-set listchars=eol:$,tab:>.,trail:_
-set visualbell t_vb=
-set showmatch	" 対応する括弧やブレースを表示
-set title
-set wildmode=list:longest " コマンドラインの補完
-" バッファ内で扱う文字コードを指定
-set encoding=utf-8
-"読み込む文字コード(文字列のリスト) : この場合UTF-8を試し、だめならShift_JIS
-set fileencodings=utf-8,cp932
+
+" ################# Settings ##################################
+let g:mapleader = "\<Space>"      " Leader Keyの設定
+set number                 " Row Number
+inoremap <silent> jk <ESC> " jkでinsert modeから抜ける
+inoremap <silent> jj <ESC> " jjでinsert modeから抜ける
+set fenc=utf-8             " 文字コードをUTF-8に設定
+set autoread               " 編集中のファイルが変更されたら自動で読み直す
+" set cursorline             " 現在の行を強調表示
+set smartindent            " インデントはスマートインデント
+set visualbell             " ビープ音を可視化
+set wildmode=list:longest  " コマンドラインの補完
+" set autoindent            " 改行した時にインデント
+set expandtab              " インデントにスペースを使う
+
+" Tab系 --------------------------------------------------------
+" 不可視文字を可視化(タブが「▸-」と表示される)
+set list listchars=tab:\▸\-
+" インデントにスペースを使う
 set expandtab
+" Tab文字の長さ
+set tabstop=4
+" 1つのインデントのスペース数
+set shiftwidth=4
 
-inoremap <silent> jj <ESC>
-inoremap <silent> jk <ESC>
-syntax enable
-hi QuickScopePrimary guifg=#ff0000
-autocmd FileType r inoremap <buffer> > <Esc>:normal! a<Space>%>%<CR>a
-autocmd FileType rnoweb inoremap <buffer> > <Esc>:normal! a<Space>%>%<CR>a
-autocmd FileType rmd inoremap <buffer> > <Esc>:normal! a<Space>%>%<CR>a
-
-" Set Leader Key
-let mapleader = "\<SPACE>"
-let g:mapleader = "\<SPACE>"
-let maplocalleader = ","
-
-" python3
-let g:python3_host_prog = "/usr/bin/python3"
-
-" LanguageClient-neovim -----------------------------------------------
-let g:LanguageClient_serverCommands = {'r': ['R', '--slave', '-e', 'languageserver::run()'], }
-" LanguageClient-neovim -----------------------------------------------
-
-let NERDTreeWinSize=20
-
-" Nvim-R -------------------------------------------------------------$
-let R_openpdf = 1
-let R_rconsole_width = 70
-" let R_rconsole_width = 0 " Rコンソールを常に下に表示$
-" let R_enable_comment = 1
-let R_assign_map = '<M-->'
-" let R_assign = 2
-" Nvim-R -------------------------------------------------------------$
-
-" 検索系 -------------------------------------------------------------
+" 検索系 --------------------------------------------------------
 " 検索文字列が小文字の場合は大文字小文字を区別なく検索する
 set ignorecase
 " 検索文字列に大文字が含まれている場合は区別して検索する
-set smartcase
+" set smartcase
+" 検索文字列入力時に順次対象文字列にヒットさせる
+set incsearch
+" 検索時に最後まで行ったら最初に戻る
+set wrapscan
 " 検索語をハイライト表示
 set hlsearch
 " ESC連打でハイライト解除
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
-" 検索系 -------------------------------------------------------------
-
-" easy motion --------------------------------------------------------
-map  <Leader>f <Plug>(easymotion-bd-f)
-nmap <Leader>f <Plug>(easymotion-overwin-f)
-" s{char}{char} to move to {char}{char}
-nmap <Leader>s <Plug>(easymotion-overwin-f2)
-" Move to line
-map <Leader>L <Plug>(easymotion-bd-jk)
-nmap <Leader>L <Plug>(easymotion-overwin-line)
-" Move to word
-map  <Leader>w <Plug>(easymotion-bd-w)
-nmap <Leader>w <Plug>(easymotion-overwin-w)
-" easy motion --------------------------------------------------------
-
-
-" LightLine.vim ------------------------------------------------------
-set laststatus=2
-" LightLine.vim ------------------------------------------------------
-
-" NCM2 ---------------------------------------------------------------
-" autocmd BufEnter * call ncm2#enable_for_buffer()
-" set completeopt=noinsert,menuone,noselect
-" NCM2 ---------------------------------------------------------------
-
