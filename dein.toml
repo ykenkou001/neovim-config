@@ -8,11 +8,18 @@ hook_add = '''
 [[plugins]]
 repo = 'easymotion/vim-easymotion'
 hook_add = '''
-map <leader>f <Plug>(easymotion-bd-f)
-nmap <leader>f <plug>(easymotion-overwin-f2)
+" EasyMotionのdefault設定を解除
+let g:EasyMotion_do_mapping = 0
+" Leader Keyの設定
+let g:mapleader = "\<Space>"
+
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
 
 " s{char}{char} to move to {char}{char}
-nmap s <Plug>(easymotion-overwin-f2)
+nmap <leader>s <Plug>(easymotion-overwin-f2)
+map <leader>s <Plug>(easymotion-overwin-f2)
 
 " Move to line
 map <Leader>L <Plug>(easymotion-bd-jk)
@@ -43,3 +50,4 @@ hook_add = '''
 	nmap <Space>M <Plug>(quickhl-manual-reset)
 	xmap <Space>M <Plug>(quickhl-manual-reset)
 '''
+

@@ -21,24 +21,55 @@ endif
 
 let &runtimepath = s:dein_repo_dir .",". &runtimepath
 
-if exists('g:vscode') " VSCode extension
+if dein#load_state(s:dein_dir)
 
-else                  " ordinary Neovim
-    " プラグイン読み込み＆キャッシュ作成
-    let s:toml_file = fnamemodify(expand('<sfile>'), ':h').'/dein.toml'
-    if dein#load_state(s:dein_dir)
-        " Call Dein initialization (required)
-        call dein#begin(s:dein_dir)
+    " Call Dein initialization (required)
+    call dein#begin(s:dein_dir)
+    call dein#add('Shougo/dein.vim')
+
+    if exists('g:vscode') " VSCode extension
+
+        call dein#add('unblevable/quick-scope')
+        highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
+        highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
+
+        call dein#add('asvetliakov/vim-easymotion')
+        map <Leader> <Plug>(easymotion-prefix)
+        " let g:EasyMotion_do_mapping = 0
+        " let mapleader = "\<Space>"      " Leader Keyの設定
+        let g:mapleader = ","      " Leader Keyの設定
+        " <Leader>f{char} to move to {char}
+        map  <Leader>f <Plug>(easymotion-bd-f)
+        nmap <Leader>f <Plug>(easymotion-overwin-f)
+        " s{char}{char} to move to {char}{char}
+        nmap <Leader>s <Plug>(easymotion-overwin-f2)
+        " Move to line
+        map <Leader>L <Plug>(easymotion-bd-jk)
+        nmap <Leader>L <Plug>(easymotion-overwin-line)
+        " Move to word
+        map  <Leader>w <Plug>(easymotion-bd-w)
+        nmap <Leader>w <Plug>(easymotion-overwin-w)
+
+        call dein#add('tpope/vim-commentary')
+        xmap gc  <Plug>VSCodeCommentary
+        nmap gc  <Plug>VSCodeCommentary
+        omap gc  <Plug>VSCodeCommentary
+        nmap gcc <Plug>VSCodeCommentaryLine
+
+    else                  " ordinary Neovim
+        " プラグイン読み込み＆キャッシュ作成
+        let s:toml_file = fnamemodify(expand('<sfile>'), ':h').'/dein.toml'
         call dein#load_toml(s:toml_file)
-        " Finish Dein initialization (required)
-        call dein#end()
-        call dein#save_state()
     endif
-
+    
     " 不足プラグインの自動インストール
     if has('vim_starting') && dein#check_install()
         call dein#install()
     endif
+
+    " Finish Dein initialization (required)
+    call dein#end()
+    call dein#save_state()
 endif
 
 
@@ -51,11 +82,11 @@ endif
 
 " Enable syntax highlighting
 if has('syntax')
-  syntax on
+  synta on
 endif
 
 " ################# Settings ##################################
-let g:mapleader = "\<Space>"      " Leader Keyの設定
+" let g:mapleader = "\<Space>"      " Leader Keyの設定
 set number                 " Row Number
 inoremap <silent> jk <ESC> " jkでinsert modeから抜ける
 inoremap <silent> jj <ESC> " jjでinsert modeから抜ける
@@ -67,6 +98,7 @@ set visualbell             " ビープ音を可視化
 set wildmode=list:longest  " コマンドラインの補完
 " set autoindent            " 改行した時にインデント
 set expandtab              " インデントにスペースを使う
+set clipboard+=unnamedplus " clipboardオプション
 
 " Tab系 --------------------------------------------------------
 " 不可視文字を可視化(タブが「▸-」と表示される)
@@ -91,3 +123,5 @@ set wrapscan
 set hlsearch
 " ESC連打でハイライト解除
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
+map <Leader> <Plug>(easymotion-prefix)
+
