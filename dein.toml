@@ -38,6 +38,10 @@ repo = 'tpope/vim-commentary'
 
 [[plugins]]
 repo = 'unblevable/quick-scope'
+hook_add = '''
+highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
+highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
+'''
 
 # [[plugins]]
 # repo = 'tpope/vim-surround'
@@ -49,5 +53,12 @@ hook_add = '''
 	xmap <Space>m <Plug>(quickhl-manual-this)
 	nmap <Space>M <Plug>(quickhl-manual-reset)
 	xmap <Space>M <Plug>(quickhl-manual-reset)
+    " Color Settings
+    let g:quickhl_manual_colors = [
+    \ "gui=bold ctermfg=16  ctermbg=153 guifg=#ffffff guibg=#0a7383",
+    \ "gui=bold ctermfg=7   ctermbg=1   guibg=#a07040 guifg=#ffffff",
+    \ "gui=bold ctermfg=7   ctermbg=2   guibg=#4070a0 guifg=#ffffff",
+    \ "gui=bold ctermfg=7   ctermbg=3   guibg=#40a070 guifg=#ffffff",
+    \ ]
 '''
 

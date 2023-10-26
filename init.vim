@@ -27,21 +27,21 @@ if dein#load_state(s:dein_dir)
     call dein#begin(s:dein_dir)
     call dein#add('Shougo/dein.vim')
 
-    if exists('g:vscode') " VSCode extension
-
+    if exists('g:vscode')
+        " VSCode extension
         call dein#add('unblevable/quick-scope')
         highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
         highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
 
         call dein#add('asvetliakov/vim-easymotion')
         map <Leader> <Plug>(easymotion-prefix)
-        " let g:EasyMotion_do_mapping = 0
-        " let mapleader = "\<Space>"      " Leader Keyの設定
+        let g:EasyMotion_do_mapping = 0
         let g:mapleader = ","      " Leader Keyの設定
         " <Leader>f{char} to move to {char}
         map  <Leader>f <Plug>(easymotion-bd-f)
         nmap <Leader>f <Plug>(easymotion-overwin-f)
         " s{char}{char} to move to {char}{char}
+        nmap <Leader>s <Plug>(easymotion-f2)
         nmap <Leader>s <Plug>(easymotion-overwin-f2)
         " Move to line
         map <Leader>L <Plug>(easymotion-bd-jk)
@@ -60,11 +60,12 @@ if dein#load_state(s:dein_dir)
         " プラグイン読み込み＆キャッシュ作成
         let s:toml_file = fnamemodify(expand('<sfile>'), ':h').'/dein.toml'
         call dein#load_toml(s:toml_file)
-    endif
-    
-    " 不足プラグインの自動インストール
-    if has('vim_starting') && dein#check_install()
-        call dein#install()
+
+        " 不足プラグインの自動インストール
+        if has('vim_starting') && dein#check_install()
+            call dein#install()
+        endif
+
     endif
 
     " Finish Dein initialization (required)
@@ -96,7 +97,7 @@ set autoread               " 編集中のファイルが変更されたら自動
 set smartindent            " インデントはスマートインデント
 set visualbell             " ビープ音を可視化
 set wildmode=list:longest  " コマンドラインの補完
-" set autoindent            " 改行した時にインデント
+set autoindent            " 改行した時にインデント
 set expandtab              " インデントにスペースを使う
 set clipboard+=unnamedplus " clipboardオプション
 
@@ -123,5 +124,4 @@ set wrapscan
 set hlsearch
 " ESC連打でハイライト解除
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
-map <Leader> <Plug>(easymotion-prefix)
 
