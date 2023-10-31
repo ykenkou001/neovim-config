@@ -1,7 +1,7 @@
 let g:mapleader = "\<Space>"         " Leader Keyの設定
 nmap <Esc><Esc> :nohlsearch<CR><Esc> " ESC連打でハイライト解除
-inoremap <silent> jk <ESC>           " jkでinsert modeから抜ける
-inoremap <silent> jj <ESC>           " jjでinsert modeから抜ける
+inoremap <silent> jk <ESC>
+inoremap <silent> jj <ESC>
 
 " 画面分割時、hjklの方向ににカーソルを移動させる
 nnoremap <silent> <Leader>h <C-w>h
@@ -20,3 +20,10 @@ vnoremap k gk
 
 " ターミナルモードのcインサートモードからノーマルモードをEscに
 tnoremap <ESC> <C-\><C-n>
+
+" 括弧やクォーテーションの自動補完
+inoremap { {}<LEFT>
+inoremap [ []<LEFT>
+inoremap ( ()<LEFT>
+inoremap " ""<LEFT>
+inoremap ' ''<LEFT>

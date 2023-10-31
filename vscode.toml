@@ -1,2 +1,35 @@
 [[plugins]]
-repo = '
+repo = 'unblevable/quick-scope'
+hook_add = '''
+    highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
+    highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
+'''
+
+[[plugins]]
+repo = 'asvetliakov/vim-easymotion'
+hook_add = '''
+    map <Leader> <Plug>(easymotion-prefix)
+    let g:EasyMotion_do_mapping = 0
+    let g:mapleader = ","      " Leader Keyの設定
+    " ------ <Leader>f{char} to move to {char} ------
+    map  <Leader>f <Plug>(easymotion-bd-f)
+    " nmap <Leader>f <Plug>(easymotion-overwin-f)
+    " ------ s{char}{char} to move to {char}{char} ------
+    " nmap <Leader>s <Plug>(easymotion-f2)
+    nmap <Leader>s <Plug>(easymotion-overwin-f2)
+    " ------ Move to line ------
+    " map <Leader>L <Plug>(easymotion-bd-jk)
+    nmap <Leader>L <Plug>(easymotion-overwin-line)
+    " ------ Move to word ------
+    " map  <Leader>w <Plug>(easymotion-bd-w)
+    nmap <Leader>w <Plug>(easymotion-overwin-w)
+'''
+
+[[plugins]]
+repo = 'tpope/vim-commentary'
+hook_add = '''
+    xmap gc  <Plug>VSCodeCommentary
+    nmap gc  <Plug>VSCodeCommentary
+    omap gc  <Plug>VSCodeCommentary
+    nmap gcc <Plug>VSCodeCommentaryLine
+'''

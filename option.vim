@@ -26,6 +26,8 @@ set infercase             " 補完時に大文字小文字を区別しない
 
 " ################# 操作 ##################################
 set clipboard+=unnamedplus  " clipboardオプション
+set splitbelow              " newWindowが下
+set splitright              " newWindowが右
 
 " ################# ログ ##################################
 set history=500 "保持するコマンド履歴の数
