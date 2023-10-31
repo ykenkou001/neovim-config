@@ -43,7 +43,7 @@ setopt share_history            # 履歴を他のシェルとリアルタイム�
 zstyle ':completion:*:default' menu select=2
 
 # ファイル補完候補に色を付ける
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':com    pletion:*' list-colors ${(s.:.)LS_COLORS}
 
 # カッコを自動補完
 setopt auto_param_keys
@@ -56,6 +56,10 @@ setopt print_eight_bit
 
 # ビープ音を消す
 setopt no_beep
+
+# cd -で以前移動したディレクトリを表示
+setopt auto_pushd
+
 
 # コマンドを途中まで入力後、historyから絞り込み
 autoload -Uz history-search-end
