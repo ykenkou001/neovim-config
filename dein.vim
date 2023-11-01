@@ -19,9 +19,13 @@ if dein#load_state(s:dein_dir)
         let s:vscode_file = fnamemodify(expand('<sfile>'), ':h').'/vscode.toml'
         call dein#load_toml(s:vscode_file)
     else
-        " プラグイン読み込み＆キャッシュ作成
+        " TOMLファイルの定義
         let s:toml_file = fnamemodify(expand('<sfile>'), ':h').'/dein.toml'
-        call dein#load_toml(s:toml_file)
+        let s:lazy_toml = fnamemodify(expand('<sfile>'), ':h').'/dein_lazy.toml'
+
+        " TOMLを読み込み、キャッシュする
+        call dein#load_toml(s:toml_file, {'lazy': 0})
+        call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
         " 不足プラグインの自動インストール
         if has('vim_starting') && dein#check_install()
@@ -32,4 +36,5 @@ if dein#load_state(s:dein_dir)
     call dein#end()
     call dein#save_state()
 endif
+
 

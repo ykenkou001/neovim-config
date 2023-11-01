@@ -2,31 +2,32 @@
 repo = 'scrooloose/nerdtree'
 hook_add = '''
 	autocmd StdinReadPre * let s:std_in=1
-	autocmd VimEnter * if argc() == 0 && !exists(#s:std_in") | NERDTree | endif
+	autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
     map <C-n> :NERDTreeToggle<CR>
 '''
 
 [[plugins]]
 repo = 'easymotion/vim-easymotion'
 hook_add = '''
-    # EasyMotionのdefault設定を解除
-    let g:EasyMotion_do_mapping = 0
-    # Leader Keyの設定
-    let g:mapleader = #\<Space>" " <Leader>f{char} to move to {char}
-    map  <Leader>f <Plug>(easymotion-bd-f)
-    nmap <Leader>f <Plug>(easymotion-overwin-f)
+" EasyMotionのdefault設定を解除
+let g:EasyMotion_do_mapping = 0
+" Leader Keyの設定
+let g:mapleader = "\<Space>"
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
 
-    # s{char}{char} to move to {char}{char}
-    nmap <leader>s <Plug>(easymotion-overwin-f2)
-    map <leader>s <Plug>(easymotion-overwin-f2)
+" s{char}{char} to move to {char}{char}
+nmap <leader>s <Plug>(easymotion-overwin-f2)
+map <leader>s <Plug>(easymotion-overwin-f2)
 
-    # Move to line
-    map <Leader>L <Plug>(easymotion-bd-jk)
-    nmap <Leader>L <Plug>(easymotion-overwin-line)
+" Move to line
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
 
-    # Move to word
-    map  <Leader>w <Plug>(easymotion-bd-w)
-    nmap <Leader>w <Plug>(easymotion-overwin-w)
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
 '''
 
 [[plugins]]
@@ -38,8 +39,8 @@ repo = 'tpope/vim-commentary'
 [[plugins]]
 repo = 'unblevable/quick-scope'
 hook_add = '''
-highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
-highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
+    highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
+    highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
 '''
 
 [[plugins]]
@@ -49,12 +50,12 @@ hook_add = '''
 	xmap <Space>m <Plug>(quickhl-manual-this)
 	nmap <Space>M <Plug>(quickhl-manual-reset)
 	xmap <Space>M <Plug>(quickhl-manual-reset)
-    # Color Settings
+    " Color Settings
     let g:quickhl_manual_colors = [
-    \ #gui=bold ctermfg=16  ctermbg=153 guifg=#ffffff guibg=#0a7383",
-    \ #gui=bold ctermfg=7   ctermbg=1   guibg=#a07040 guifg=#ffffff",
-    \ #gui=bold ctermfg=7   ctermbg=2   guibg=#4070a0 guifg=#ffffff",
-    \ #gui=bold ctermfg=7   ctermbg=3   guibg=#40a070 guifg=#ffffff",
+    \ "gui=bold ctermfg=16  ctermbg=153 guifg=#ffffff guibg=#0a7383",
+    \ "gui=bold ctermfg=7   ctermbg=1   guibg=#a07040 guifg=#ffffff",
+    \ "gui=bold ctermfg=7   ctermbg=2   guibg=#4070a0 guifg=#ffffff",
+    \ "gui=bold ctermfg=7   ctermbg=3   guibg=#40a070 guifg=#ffffff",
     \ ]
 '''
 
@@ -63,27 +64,34 @@ hook_add = '''
 repo = 'simeji/winresizer'
 
 [[plugins]]
-# ddc.vim本体
-repo = 'Shougo/ddc.vim'
-hook_add = '''
-source ~/.config/nvim/plugins/ddc.vim
-'''
-
-[[plugins]]
-# vim-settings
-repo = 'mattn/vim-lsp-settings'
+# DenoでVimプラグインを開発するためのプラグイン
+repo = 'vim-denops/denops.vim'
 
 [[plugins]]
 # vim-lsp
 repo = 'prabirshrestha/vim-lsp'
 
 [[plugins]]
-# DenoでVimプラグインを開発するためのプラグイン
-repo = 'vim-denops/denops.vim'
+# vim-settings
+repo = 'mattn/vim-lsp-settings'
+
+[[plugins]]
+# ddc-source-nvim-lsp
+repo = 'Shougo/ddc-source-nvim-lsp'
 
 [[plugins]]
 # ポップアップウィンドウを表示するプラグイン
 repo = 'Shougo/pum.vim'
+hook_source = '''
+source ~/.config/nvim/plugins/pum.vim
+'''
+
+[[plugins]]
+# ddc.vim本体
+repo = 'Shougo/ddc.vim'
+hook_source = '''
+source ~/.config/nvim/plugins/ddc.vim
+'''
 
 [[plugins]]
 # カーソル周辺の既出単語を補完するsource

@@ -1,0 +1,61 @@
+# [[plugins]]
+# # DenoでVimプラグインを開発するためのプラグイン
+# repo = 'vim-denops/denops.vim'
+
+# [[plugins]]
+# # ポップアップウィンドウを表示するプラグイン
+# repo = 'Shougo/pum.vim'
+# hook_source = '''
+# source ~/.config/nvim/plugins/pum.vim
+# '''
+
+# # ddc.vim本体
+# [[plugins]]
+# repo = 'Shougo/ddc.vim'
+# on_event = 'InsertEnter'
+# depends = ['denops.vim']
+# hook_source = '''
+# source ~/.config/nvim/plugins/ddc.vim
+# '''
+
+# [[plugins]]
+# # vim-lsp
+# repo = 'prabirshrestha/vim-lsp'
+# on_source = 'ddc.vim'
+
+# [[plugins]]
+# # vim-settings
+# repo = 'mattn/vim-lsp-settings'
+# on_source = 'ddc.vim'
+
+# [[plugins]]
+# # ddc-source-nvim-lsp
+# repo = 'Shougo/ddc-source-nvim-lsp'
+# on_source = 'ddc.vim'
+
+
+# [[plugins]]
+# # カーソル周辺の既出単語を補完するsource
+# repo = 'Shougo/ddc-around'
+# on_source = 'ddc.vim'
+
+# [[plugins]]
+# # ファイル名を補完するsource
+# repo = 'LumaKernel/ddc-file'
+# on_source = 'ddc.vim'
+
+# [[plugins]]
+# # 入力中の単語を補完の対象にするfilter
+# repo = 'Shougo/ddc-matcher_head'
+# on_source = 'ddc.vim'
+
+# [[plugins]]
+# # 補完候補を適切にソートするfilter
+# repo = 'Shougo/ddc-sorter_rank'
+# on_source = 'ddc.vim'
+
+# [[plugins]]
+# # 補完候補の重複を防ぐためのfilter
+# repo = 'Shougo/ddc-converter_remove_overlap'
+# on_source = 'ddc.vim'
+
