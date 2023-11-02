@@ -64,6 +64,13 @@ hook_add = '''
 repo = 'simeji/winresizer'
 
 [[plugins]]
+# ddc.vim本体
+repo = 'Shougo/ddc.vim'
+hook_source = '''
+source ~/.config/nvim/plugins/ddc.vim
+'''
+
+[[plugins]]
 # DenoでVimプラグインを開発するためのプラグイン
 repo = 'vim-denops/denops.vim'
 
@@ -87,10 +94,17 @@ source ~/.config/nvim/plugins/pum.vim
 '''
 
 [[plugins]]
-# ddc.vim本体
-repo = 'Shougo/ddc.vim'
+# wild menuにおける補完
+repo = 'gelguy/wilder.nvim'
 hook_source = '''
-source ~/.config/nvim/plugins/ddc.vim
+" Default keys
+call wilder#setup({
+      \ 'modes': [':', '/', '?'],
+      \ 'next_key': '<Tab>',
+      \ 'previous_key': '<S-Tab>',
+      \ 'accept_key': '<Down>',
+      \ 'reject_key': '<Up>',
+      \ })
 '''
 
 [[plugins]]
