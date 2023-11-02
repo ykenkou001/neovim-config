@@ -94,9 +94,16 @@ source ~/.config/nvim/plugins/pum.vim
 '''
 
 [[plugins]]
+repo = 'roxma/nvim-yarp'
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+
+[[plugins]]
 # wild menuにおける補完
 repo = 'gelguy/wilder.nvim'
-hook_source = '''
+# hook_source = '''
+hook_add = '''
 " Default keys
 call wilder#setup({
       \ 'modes': [':', '/', '?'],

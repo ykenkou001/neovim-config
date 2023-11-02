@@ -18,7 +18,7 @@ endif
 call ddc#custom#patch_global('ui', 'pum.vim')
 call ddc#custom#patch_global('sources', [
  \ 'around',
- \ 'nvim-lsp',
+ \ 'vim-lsp',
  \ 'file'
  \ ])
 call ddc#custom#patch_global('sourceOptions', {
@@ -28,7 +28,7 @@ call ddc#custom#patch_global('sourceOptions', {
  \   'converters': ['converter_remove_overlap'],
  \ },
  \ 'around': {'mark': 'Around'},
- \ 'nvim-lsp': {
+ \ 'vim-lsp': {
  \   'mark': 'LSP', 
  \   'matchers': ['matcher_head'],
  \   'forceCompletionPattern': '\.|:|->|"\w+/*'

@@ -44,4 +44,5 @@ set viminfo= " viminfoファイルに保存しない
 set fenc=utf-8              " 文字コードをUTF-8に設定
 set autoread                " 編集中のファイルが変更されたら自動で読み直す
 set visualbell              " ビープ音を可視化
-autocmd BufNewFile ~/*.cpp :0r ~/.vim/template/c++
+autocmd BufNewFile ~/*.cpp :0r ~/.config/nvim/template/c++
+setlocal path=/usr/include,/usr/local/include
