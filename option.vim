@@ -24,8 +24,8 @@ set expandtab     " インデントにスペースを使う
 set wildmode=list:longest " コマンドラインの補完
 set wildmenu              " コマンドの補完
 set infercase             " 補完時に大文字小文字を区別しない
-set wildoptions=pum        " pum.vim。pop up windowを表示する
-" set wildoptions+=pum        " pum.vim。pop up windowを表示する
+" set wildoptions=pum        " pum.vim。pop up windowを表示する
+set wildoptions+=pum        " pum.vim。pop up windowを表示する
 
 " ################# 操作 ##################################
 set clipboard+=unnamedplus  " clipboardオプション

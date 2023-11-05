@@ -63,6 +63,20 @@ hook_add = '''
 # 画面分割時に<C-E>でウインドウのリサイズモード、H,J,K,Lでリサイズ
 repo = 'simeji/winresizer'
 
+# [[plugins]]
+# repo = 'Shougo/ddc-ui-native'
+
+[[plugins]]
+# pum.vim UI for ddc.vim
+repo = 'Shougo/ddc-ui-pum'
+
+[[plugins]]
+# ポップアップウィンドウを表示するプラグイン
+repo = 'Shougo/pum.vim'
+hook_source = '''
+source ~/.config/nvim/plugins/pum.vim
+'''
+
 [[plugins]]
 # ddc.vim本体
 repo = 'Shougo/ddc.vim'
@@ -87,11 +101,24 @@ repo = 'mattn/vim-lsp-settings'
 repo = 'Shougo/ddc-source-nvim-lsp'
 
 [[plugins]]
-# ポップアップウィンドウを表示するプラグイン
-repo = 'Shougo/pum.vim'
-hook_source = '''
-source ~/.config/nvim/plugins/pum.vim
-'''
+# カーソル周辺の既出単語を補完するsource
+repo = 'Shougo/ddc-around'
+
+[[plugins]]
+# ファイル名を補完するsource
+repo = 'LumaKernel/ddc-file'
+
+[[plugins]]
+# 入力中の単語を補完の対象にするfilter
+repo = 'Shougo/ddc-matcher_head'
+
+[[plugins]]
+# 補完候補を適切にソートするfilter
+repo = 'Shougo/ddc-sorter_rank'
+
+[[plugins]]
+# 補完候補の重複を防ぐためのfilter
+repo = 'Shougo/ddc-converter_remove_overlap'
 
 [[plugins]]
 repo = 'roxma/nvim-yarp'
@@ -113,24 +140,4 @@ call wilder#setup({
       \ 'reject_key': '<Up>',
       \ })
 '''
-
-[[plugins]]
-# カーソル周辺の既出単語を補完するsource
-repo = 'Shougo/ddc-around'
-
-[[plugins]]
-# ファイル名を補完するsource
-repo = 'LumaKernel/ddc-file'
-
-[[plugins]]
-# 入力中の単語を補完の対象にするfilter
-repo = 'Shougo/ddc-matcher_head'
-
-[[plugins]]
-# 補完候補を適切にソートするfilter
-repo = 'Shougo/ddc-sorter_rank'
-
-[[plugins]]
-# 補完候補の重複を防ぐためのfilter
-repo = 'Shougo/ddc-converter_remove_overlap'
 
