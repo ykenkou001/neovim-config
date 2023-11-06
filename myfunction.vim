@@ -40,8 +40,8 @@ function IsInsideParentheses(prevChar,nextChar) abort
 	let l:cursorIsInsideParentheses1 = (a:prevChar == "{" && a:nextChar == "}")
 	let l:cursorIsInsideParentheses2 = (a:prevChar == "[" && a:nextChar == "]")
 	let l:cursorIsInsideParentheses3 = (a:prevChar == "(" && a:nextChar == ")")
-	let l:cursorIsInsideParentheses3 = (a:prevChar == "<" && a:nextChar == ">")
-	return (l:cursorIsInsideParentheses1 || l:cursorIsInsideParentheses2 || l:cursorIsInsideParentheses3)
+	let l:cursorIsInsideParentheses4 = (a:prevChar == "<" && a:nextChar == ">")
+    return (l:cursorIsInsideParentheses1 || l:cursorIsInsideParentheses2 || l:cursorIsInsideParentheses3 || l:cursorIsInsideParentheses4)
 endfunction
 
 "括弧の入力

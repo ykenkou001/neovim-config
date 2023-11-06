@@ -29,12 +29,12 @@ tnoremap <ESC> <C-\><C-n>
 inoremap <expr> { InputParentheses("{")
 inoremap <expr> [ InputParentheses("[")
 inoremap <expr> ( InputParentheses("(")
-inoremap <expr> < InputParentheses<"<">
+inoremap <expr> < InputParentheses("<")
 " 閉じ括弧の入力
 inoremap <expr> } InputCloseParenthesis("}")
 inoremap <expr> ] InputCloseParenthesis("]")
 inoremap <expr> ) InputCloseParenthesis(")")
-inoremap <expr> > InputCloseParenthesis<">">
+inoremap <expr> > InputCloseParenthesis(">")
 " クォーテーションの入力
 inoremap <expr> ' InputQuot("\'")
 inoremap <expr> " InputQuot("\"")

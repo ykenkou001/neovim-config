@@ -67,7 +67,8 @@ repo = 'simeji/winresizer'
 # ddc.vim本体
 repo = 'Shougo/ddc.vim'
 hook_source = '''
-source ~/.config/nvim/plugins/ddc.vim
+" source ~/.config/nvim/plugins/ddc.vim
+source ./plugins/ddc.vim
 '''
 
 [[plugins]]
@@ -83,6 +84,10 @@ repo = 'prabirshrestha/vim-lsp'
 repo = 'mattn/vim-lsp-settings'
 
 [[plugins]]
+# nvim-lspconfig
+repo = 'neovim/nvim-lspconfig'
+
+[[plugins]]
 # ddc-source-nvim-lsp
 repo = 'Shougo/ddc-source-nvim-lsp'
 
@@ -90,7 +95,8 @@ repo = 'Shougo/ddc-source-nvim-lsp'
 # ポップアップウィンドウを表示するプラグイン
 repo = 'Shougo/pum.vim'
 hook_source = '''
-source ~/.config/nvim/plugins/pum.vim
+" source ~/.config/nvim/plugins/pum.vim
+source ./plugins/pum.vim
 '''
 
 [[plugins]]
