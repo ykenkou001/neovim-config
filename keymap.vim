@@ -1,5 +1,5 @@
 " myfunction.vimの呼び出し
-source ~/.config/nvim/myfunction.vim
+" runtime! ~/.config/nvim/myfunction.vim
 
 let g:mapleader = "\<Space>"         " Leader Keyの設定
 nmap <Esc><Esc> :nohlsearch<CR><Esc> " ESC連打でハイライト解除
@@ -26,20 +26,20 @@ tnoremap <ESC> <C-\><C-n>
 
 " 括弧やクォーテーションの自動補完 -------------------------------
 " 括弧の自動補完
- inoremap <expr> { InputParentheses("{")
- inoremap <expr> [ InputParentheses("[")
- inoremap <expr> ( InputParentheses("(")
- inoremap <expr> < InputParentheses<"<">
- " 閉じ括弧の入力
- inoremap <expr> } InputCloseParenthesis("}")
- inoremap <expr> ] InputCloseParenthesis("]")
- inoremap <expr> ) InputCloseParenthesis(")")
- inoremap <expr> > InputCloseParenthesis<">">
- " クォーテーションの入力
- inoremap <expr> ' InputQuot("\'")
- inoremap <expr> " InputQuot("\"")
- inoremap <expr> ` InputQuot("\`")
+inoremap <expr> { InputParentheses("{")
+inoremap <expr> [ InputParentheses("[")
+inoremap <expr> ( InputParentheses("(")
+inoremap <expr> < InputParentheses<"<">
+" 閉じ括弧の入力
+inoremap <expr> } InputCloseParenthesis("}")
+inoremap <expr> ] InputCloseParenthesis("]")
+inoremap <expr> ) InputCloseParenthesis(")")
+inoremap <expr> > InputCloseParenthesis<">">
+" クォーテーションの入力
+inoremap <expr> ' InputQuot("\'")
+inoremap <expr> " InputQuot("\"")
+inoremap <expr> ` InputQuot("\`")
 " 改行の入力
- inoremap <expr> <CR> InputCR()
+inoremap <expr> <CR> InputCR()
 " バックスペースの入力
- inoremap <expr> <BS> InputBS()
+inoremap <expr> <BS> InputBS()

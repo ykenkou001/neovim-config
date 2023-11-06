@@ -48,4 +48,4 @@ set autoread                " 編集中のファイルが変更されたら自�
 set visualbell              " ビープ音を可視化
 
 autocmd BufNewFile ~/*.cpp :0r ~/.config/nvim/template/c++
-setlocal path=/usr/include,/usr/local/include
+setlocal path=/usr/include,/usr/local/include,/usr/include/opencv4

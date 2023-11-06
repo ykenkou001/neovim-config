@@ -9,6 +9,8 @@ set nocompatible
 runtime! option.vim
 runtime! keymap.vim
 runtime! dein.vim
+" myfunction.vimの呼び出し
+runtime! myfunction.vim
 
 " Attempt to determine the type of a file based on its name and possibly its
 " contents. Use this to allow intelligent auto-indenting for each filetype,
