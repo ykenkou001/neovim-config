@@ -5,6 +5,7 @@ set relativenumber          " カーソル位置からの相対的な行番号
 set title                   " ターミナルのタブ名に現在編集中のファイル名を設定
 set title                   " ウインドウのタイトルバーにファイルのパス情報等を表示する
 " set cursorline              " 現在の行を強調表示
+setlocal matchpairs+=<:>    " <>もハイライト
 
 " ################# 検索系・置換 ##################################
 set ignorecase " 検索文字列が小文字の場合は大文字小文字を区別なく検索する
@@ -31,6 +32,7 @@ set wildoptions+=pum        " pum.vim。pop up windowを表示する
 set clipboard+=unnamedplus  " clipboardオプション
 set splitbelow              " newWindowが下
 set splitright              " newWindowが右
+set backspace=indent,eol,start
 
 " ################# ログ ##################################
 set history=500 "保持するコマンド履歴の数
@@ -44,5 +46,6 @@ set viminfo= " viminfoファイルに保存しない
 set fenc=utf-8              " 文字コードをUTF-8に設定
 set autoread                " 編集中のファイルが変更されたら自動で読み直す
 set visualbell              " ビープ音を可視化
+
 autocmd BufNewFile ~/*.cpp :0r ~/.config/nvim/template/c++
 setlocal path=/usr/include,/usr/local/include
