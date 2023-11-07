@@ -147,7 +147,7 @@ function! InputBS() abort
 	endif
 endfunction
 
-" CMakeLists.txtを作成する関数
+" main.cppを作成すると同時にCMakeLists.txtを作成する関数
 function! CreateCMakeLists()
     let main_cpp_path = expand('%:p')
     let cmake_lists_path = fnamemodify(main_cpp_path, ':h') . '/CMakeLists.txt'
@@ -176,7 +176,7 @@ function! CreateCMakeLists()
 endfunction
 
 function! CreateCMakeLists()
-    " CMakeLists.txtのテンプレートを設定
+    " New buffer内でCMakeLists.txtを作成する関数
     let cmake_content = [
             \'# 最低限のCMakeのバージョン要件を設定',
             \'cmake_minimum_required(VERSION 3.0)',
@@ -185,7 +185,7 @@ function! CreateCMakeLists()
             \'project(MyProject)',
             \'',
             \'# C++のバージョンを設定',
-            \'set(CMAKE_CXX_STANDARD 11)',
+            \'set(CMAKE_CXX_STANDARD 17)',
             \'set(CMAKE_CXX_STANDARD_REQUIRED ON)',
             \'',
             \'# ソースファイルを追加（適切なソースファイルを指定）',
@@ -208,6 +208,40 @@ function! CreateCMakeLists()
     echo "CMakeLists.txt created: " . cmake_file
 endfunction
 
+function! CreateCMakeListsOpencv()
+    " OpenCV用のNew buffer内でCMakeLists.txtを作成する関数
+    let cmake_content = [
+            \"cmake_minimum_required(VERSION 3.10)",
+            \"",
+            \"project(opencv_demo)",
+            \"",
+            \"add_executable(write_text write_text.cc)",
+            \"",
+            \"set(OPENCV_INCLUDE_DIR /path/to/opencv/include)",
+            \"set(OPENCV_LIB_DIR /path/to/opencv/lib)",
+            \"",
+            \"# Includeディレクトリの設定",
+            \"target_include_directories(write_text PUBLIC \"${OPENCV_INCLUDE_DIR}\")",
+            \"",
+            \"# ライブラリディレクトリの設定",
+            \"target_link_directories(write_text PUBLIC \"${OPENCV_LIB_DIR}\")",
+            \"",
+            \"# 必要なライブラリのリンク",
+            \"target_link_libraries(write_text opencv_imgcodecs opencv_core opencv_imgproc)",]
+
+    " 新しいバッファを開き、テンプレートを挿入
+    enew
+    call append(0, cmake_content)
+
+    " ファイル名を自動設定
+    let cmake_file = expand('%:p:h') . '/CMakeLists.txt'
+    exe 'file ' . cmake_file
+    exe 'write'
+
+    echo "CMakeLists.txt created: " . cmake_file
+endfunction
+
 " 新しいファイルを作成するコマンドを設定
 command! CreateCMake call CreateCMakeLists()
+command! CreateCMakeListsOpencv call CreateCMakeListsOpencv()
 
