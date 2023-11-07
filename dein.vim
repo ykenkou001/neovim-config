@@ -27,9 +27,6 @@ if dein#load_state(s:dein_dir)
         call dein#load_toml(s:toml_file, {'lazy': 0})
         call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
-        runtime! ~/.config/nvim/plugins/ddc.vim
-        runtime! ~/.config/nvim/plugins/pum.vim
-
         " 不足プラグインの自動インストール
         if has('vim_starting') && dein#check_install()
             call dein#install()

@@ -146,3 +146,68 @@ function! InputBS() abort
 		return "\<BS>"
 	endif
 endfunction
+
+" CMakeLists.txtを作成する関数
+function! CreateCMakeLists()
+    let main_cpp_path = expand('%:p')
+    let cmake_lists_path = fnamemodify(main_cpp_path, ':h') . '/CMakeLists.txt'
+    
+    if !filereadable(cmake_lists_path)
+        call writefile([
+            \'# 最低限のCMakeのバージョン要件を設定',
+            \'cmake_minimum_required(VERSION 3.0)',
+            \'',
+            \'# プロジェクト名を設定',
+            \'project(MyProject)',
+            \'',
+            \'# C++のバージョンを設定',
+            \'set(CMAKE_CXX_STANDARD 17)',
+            \'set(CMAKE_CXX_STANDARD_REQUIRED ON)',
+            \'',
+            \'# ソースファイルを追加（適切なソースファイルを指定）',
+            \'add_executable(my_program main.cpp)',
+            \'',
+            \'# 必要なライブラリをリンク（必要に応じてカスタマイズ）',
+            \'target_link_libraries(my_program my_library)',
+            \'',
+            \'# その他のプロジェクト固有の設定（必要に応じてカスタマイズ）'], cmake_lists_path)
+        echo "CMakeLists.txt created."
+    endif
+endfunction
+
+function! CreateCMakeLists()
+    " CMakeLists.txtのテンプレートを設定
+    let cmake_content = [
+            \'# 最低限のCMakeのバージョン要件を設定',
+            \'cmake_minimum_required(VERSION 3.0)',
+            \'',
+            \'# プロジェクト名を設定',
+            \'project(MyProject)',
+            \'',
+            \'# C++のバージョンを設定',
+            \'set(CMAKE_CXX_STANDARD 11)',
+            \'set(CMAKE_CXX_STANDARD_REQUIRED ON)',
+            \'',
+            \'# ソースファイルを追加（適切なソースファイルを指定）',
+            \'add_executable(my_program main.cpp)',
+            \'',
+            \'# 必要なライブラリをリンク（必要に応じてカスタマイズ）',
+            \'# target_link_libraries(my_program my_library)',
+            \'',
+            \'# その他のプロジェクト固有の設定（必要に応じてカスタマイズ）',]
+
+    " 新しいバッファを開き、テンプレートを挿入
+    enew
+    call append(0, cmake_content)
+
+    " ファイル名を自動設定
+    let cmake_file = expand('%:p:h') . '/CMakeLists.txt'
+    exe 'file ' . cmake_file
+    exe 'write'
+
+    echo "CMakeLists.txt created: " . cmake_file
+endfunction
+
+" 新しいファイルを作成するコマンドを設定
+command! CreateCMake call CreateCMakeLists()
+

@@ -22,9 +22,9 @@ set autoindent    " 改行した時にインデント
 set expandtab     " インデントにスペースを使う
 
 " ################# 補完 ##################################
-set wildmode=list:longest " コマンドラインの補完
-set wildmenu              " コマンドの補完
-set infercase             " 補完時に大文字小文字を区別しない
+set wildmode=list:longest   " コマンドラインの補完
+set wildmenu                " コマンドの補完
+set infercase               " 補完時に大文字小文字を区別しない
 " set wildoptions=pum        " pum.vim。pop up windowを表示する
 set wildoptions+=pum        " pum.vim。pop up windowを表示する
 
@@ -42,10 +42,19 @@ set nobackup " backupを保存しない
 set nowritebackup "writebackupを保存しない
 set viminfo= " viminfoファイルに保存しない
 
+" ################# ターミナル ##################################
+autocmd TermOpen * :startinsert
+
 " ################# その他 ##################################
 set fenc=utf-8              " 文字コードをUTF-8に設定
 set autoread                " 編集中のファイルが変更されたら自動で読み直す
 set visualbell              " ビープ音を可視化
 
-autocmd BufNewFile ~/*.cpp :0r ~/.config/nvim/template/c++
-setlocal path=/usr/include,/usr/local/include,/usr/include/opencv4
+autocmd BufNewFile ~/*.cpp :0r ~/.config/nvim/template/c++ " c++用のテンプレ
+" main.cppが作成されたらどう階層にCMakeLists.txtを作成する
+augroup create_main_cpp
+  autocmd!
+  autocmd BufNewFile main.cpp call CreateCMakeLists()
+augroup END
+
+" setlocal path=/usr/include,/usr/local/include,/usr/include/opencv4
