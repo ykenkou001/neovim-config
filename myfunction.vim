@@ -148,32 +148,32 @@ function! InputBS() abort
 endfunction
 
 " main.cppを作成すると同時にCMakeLists.txtを作成する関数
-function! CreateCMakeLists()
-    let main_cpp_path = expand('%:p')
-    let cmake_lists_path = fnamemodify(main_cpp_path, ':h') . '/CMakeLists.txt'
+" function! CreateCMakeLists()
+"     let main_cpp_path = expand('%:p')
+"     let cmake_lists_path = fnamemodify(main_cpp_path, ':h') . '/CMakeLists.txt'
     
-    if !filereadable(cmake_lists_path)
-        call writefile([
-            \'# 最低限のCMakeのバージョン要件を設定',
-            \'cmake_minimum_required(VERSION 3.0)',
-            \'',
-            \'# プロジェクト名を設定',
-            \'project(MyProject)',
-            \'',
-            \'# C++のバージョンを設定',
-            \'set(CMAKE_CXX_STANDARD 17)',
-            \'set(CMAKE_CXX_STANDARD_REQUIRED ON)',
-            \'',
-            \'# ソースファイルを追加（適切なソースファイルを指定）',
-            \'add_executable(my_program main.cpp)',
-            \'',
-            \'# 必要なライブラリをリンク（必要に応じてカスタマイズ）',
-            \'target_link_libraries(my_program my_library)',
-            \'',
-            \'# その他のプロジェクト固有の設定（必要に応じてカスタマイズ）'], cmake_lists_path)
-        echo "CMakeLists.txt created."
-    endif
-endfunction
+"     if !filereadable(cmake_lists_path)
+"         call writefile([
+"             \'# 最低限のCMakeのバージョン要件を設定',
+"             \'cmake_minimum_required(VERSION 3.0)',
+"             \'',
+"             \'# プロジェクト名を設定',
+"             \'project(MyProject)',
+"             \'',
+"             \'# C++のバージョンを設定',
+"             \'set(CMAKE_CXX_STANDARD 17)',
+"             \'set(CMAKE_CXX_STANDARD_REQUIRED ON)',
+"             \'',
+"             \'# ソースファイルを追加（適切なソースファイルを指定）',
+"             \'add_executable(my_program main.cpp)',
+"             \'',
+"             \'# 必要なライブラリをリンク（必要に応じてカスタマイズ）',
+"             \'target_link_libraries(my_program my_library)',
+"             \'',
+"             \'# その他のプロジェクト固有の設定（必要に応じてカスタマイズ）'], cmake_lists_path)
+"         echo "CMakeLists.txt created."
+"     endif
+" endfunction
 
 function! CreateCMakeLists()
     " New buffer内でCMakeLists.txtを作成する関数
@@ -208,40 +208,59 @@ function! CreateCMakeLists()
     echo "CMakeLists.txt created: " . cmake_file
 endfunction
 
+" 新しいファイルを作成するコマンドを設定
+command! CreateCMake call CreateCMakeLists()
+
 function! CreateCMakeListsOpencv()
-    " OpenCV用のNew buffer内でCMakeLists.txtを作成する関数
+    " 現在のファイル名とディレクトリを取得
+    let current_file = expand('%')
+    let parent_dir = fnamemodify(expand('%:p:h'), ':t')
+    let current_dir = expand('%:p:h')
+
+    echo current_dir
+    
+    " ファイル名から拡張子なしのファイル名を抽出
+    let file_name_without_extension = fnamemodify(current_file, ':t:r')
+    
+    " CMakeLists.txtの内容を定義
     let cmake_content = [
-            \"cmake_minimum_required(VERSION 3.10)",
-            \"",
-            \"project(opencv_demo)",
-            \"",
-            \"add_executable(write_text write_text.cc)",
-            \"",
-            \"set(OPENCV_INCLUDE_DIR /path/to/opencv/include)",
-            \"set(OPENCV_LIB_DIR /path/to/opencv/lib)",
-            \"",
-            \"# Includeディレクトリの設定",
-            \"target_include_directories(write_text PUBLIC \"${OPENCV_INCLUDE_DIR}\")",
-            \"",
-            \"# ライブラリディレクトリの設定",
-            \"target_link_directories(write_text PUBLIC \"${OPENCV_LIB_DIR}\")",
-            \"",
-            \"# 必要なライブラリのリンク",
-            \"target_link_libraries(write_text opencv_imgcodecs opencv_core opencv_imgproc)",]
+        \ "cmake_minimum_required(VERSION 3.10)",
+        \ "",
+        \ "project(" . parent_dir . ")",
+        \ "",
+        \ "add_executable(" . file_name_without_extension . " " . current_file . ")",
+        \ "set(CMAKE_CXX_STANDARD 17)",
+        \ "set(CMAKE_CXX_STANDARD_REQUIRED ON)",
+        \ "set(CMAKE_CXX_FLAGS \"-std=c++17\")",
+        \ "",
+        \ "# ターゲットに対してC++のバージョンを設定する",
+        \ "# target_compile_features(" . file_name_without_extension . " PRIVATE cxx_std_17)",
+        \ "",
+        \ "# Includeディレクトリの設定",
+        \ "set(OPENCV_INCLUDE_DIR /usr/include/opencv4)",
+        \ "target_include_directories(" . file_name_without_extension . " PUBLIC \"${OPENCV_INCLUDE_DIR}\")",
+        \ "",
+        \ "# ライブラリディレクトリの設定",
+        \ "set(OPENCV_LIB_DIR /usr/lib)",
+        \ "target_link_directories(" . file_name_without_extension . " PUBLIC \"${OPENCV_LIB_DIR}\")",
+        \ "",
+        \ "# 必要なライブラリのリンク",
+        \ "target_link_libraries(" . file_name_without_extension . " opencv_imgcodecs opencv_core opencv_imgproc opencv_highgui opencv_videoio)",]
 
     " 新しいバッファを開き、テンプレートを挿入
     enew
     call append(0, cmake_content)
 
-    " ファイル名を自動設定
-    let cmake_file = expand('%:p:h') . '/CMakeLists.txt'
-    exe 'file ' . cmake_file
-    exe 'write'
+    " CMakeLists.txtのファイル名を設定
+    let cmake_file = current_dir . '/CMakeLists.txt'
+    
+    " ファイルを保存
+    exe 'write ' . cmake_file
 
     echo "CMakeLists.txt created: " . cmake_file
 endfunction
 
+
 " 新しいファイルを作成するコマンドを設定
-command! CreateCMake call CreateCMakeLists()
-command! CreateCMakeListsOpencv call CreateCMakeListsOpencv()
+command! CreateCMakeOpencv call CreateCMakeListsOpencv()
 

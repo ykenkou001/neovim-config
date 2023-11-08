@@ -51,10 +51,10 @@ set autoread                " 編集中のファイルが変更されたら自�
 set visualbell              " ビープ音を可視化
 
 autocmd BufNewFile ~/*.cpp :0r ~/.config/nvim/template/c++ " c++用のテンプレ
+autocmd BufNewFile makefile :0r ~/.config/nvim/template/makefile " makefile用のテンプレ
 " main.cppが作成されたらどう階層にCMakeLists.txtを作成する
-augroup create_main_cpp
-  autocmd!
-  autocmd BufNewFile main.cpp call CreateCMakeLists()
-augroup END
+" augroup create_main_cpp
+"   autocmd!
+"   autocmd BufNewFile main.cpp call CreateCMakeLists()
+" augroup END
 
-" setlocal path=/usr/include,/usr/local/include,/usr/include/opencv4
