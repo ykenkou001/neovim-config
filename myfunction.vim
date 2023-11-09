@@ -40,18 +40,17 @@ function IsInsideParentheses(prevChar,nextChar) abort
 	let l:cursorIsInsideParentheses1 = (a:prevChar == "{" && a:nextChar == "}")
 	let l:cursorIsInsideParentheses2 = (a:prevChar == "[" && a:nextChar == "]")
 	let l:cursorIsInsideParentheses3 = (a:prevChar == "(" && a:nextChar == ")")
-	let l:cursorIsInsideParentheses4 = (a:prevChar == "<" && a:nextChar == ">")
-    return (l:cursorIsInsideParentheses1 || l:cursorIsInsideParentheses2 || l:cursorIsInsideParentheses3 || l:cursorIsInsideParentheses4)
+    return (l:cursorIsInsideParentheses1 || l:cursorIsInsideParentheses2 || l:cursorIsInsideParentheses3)
 endfunction
 
 "括弧の入力
 function! InputParentheses(parenthesis) abort
 	let l:nextChar = GetNextString(1)
 	let l:prevChar = GetPrevString(1)
-	let l:parentheses = { "{": "}", "[": "]", "(": ")", "<": ">" }
+	let l:parentheses = { "{": "}", "[": "]", "(": ")"}
 
 	let l:nextCharIsEmpty = (l:nextChar == "")
-	let l:nextCharIsCloseParenthesis = (l:nextChar == "}" || l:nextChar == "]" || l:nextChar == ")" || l:nextChar == ">")
+	let l:nextCharIsCloseParenthesis = (l:nextChar == "}" || l:nextChar == "]" || l:nextChar == ")")
 	let l:nextCharIsSpace = (l:nextChar == " ")
 
 	if l:nextCharIsEmpty || l:nextCharIsCloseParenthesis || l:nextCharIsSpace
@@ -78,7 +77,7 @@ function! InputQuot(quot) abort
 
 	let l:cursorIsInsideQuotes = (l:prevChar == a:quot && l:nextChar == a:quot)
 	let l:nextCharIsEmpty = (l:nextChar == "")
-	let l:nextCharIsClosingParenthesis = (l:nextChar == "}" || l:nextChar == "]" || l:nextChar == ")" || l:nextChar == ">")
+	let l:nextCharIsClosingParenthesis = (l:nextChar == "}" || l:nextChar == "]" || l:nextChar == ")")
 	let l:nextCharIsSpace = (l:nextChar == " ")
 	let l:prevCharIsAlphabet = IsAlphabet(l:prevChar)
 	let l:prevCharIsFullWidth = IsFullWidth(l:prevChar)
@@ -134,7 +133,6 @@ function! InputBS() abort
 	let l:cursorIsInsideSpace1 = (l:prevTwoString == "{ " && l:nextTwoString == " }")
 	let l:cursorIsInsideSpace2 = (l:prevTwoString == "[ " && l:nextTwoString == " ]")
 	let l:cursorIsInsideSpace3 = (l:prevTwoString == "( " && l:nextTwoString == " )")
-	let l:cursorIsInsideSpace3 = (l:prevTwoString == "< " && l:nextTwoString == " >")
 	let l:cursorIsInsideSpace = (l:cursorIsInsideSpace1 || l:cursorIsInsideSpace2 || l:cursorIsInsideSpace3)
 
 	let l:existsQuot = (l:prevChar == "'" && l:nextChar == "'")

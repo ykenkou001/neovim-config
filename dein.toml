@@ -64,6 +64,14 @@ hook_add = '''
 repo = 'simeji/winresizer'
 
 [[plugins]]
+# ポップアップウィンドウを表示するプラグイン
+repo = 'Shougo/pum.vim'
+hook_source = '''
+source ~/.config/nvim/plugins/pum.vim
+" source ./plugins/pum.vim
+'''
+
+[[plugins]]
 # ddc.vim本体
 repo = 'Shougo/ddc.vim'
 hook_source = '''
@@ -75,9 +83,9 @@ source ~/.config/nvim/plugins/ddc.vim
 # DenoでVimプラグインを開発するためのプラグイン
 repo = 'vim-denops/denops.vim'
 
-[[plugins]]
-# vim-lsp
-repo = 'prabirshrestha/vim-lsp'
+# [[plugins]]
+# # vim-lsp
+# repo = 'prabirshrestha/vim-lsp'
 
 [[plugins]]
 # vim-settings
@@ -90,14 +98,6 @@ repo = 'neovim/nvim-lspconfig'
 [[plugins]]
 # ddc-source-nvim-lsp
 repo = 'Shougo/ddc-source-nvim-lsp'
-
-[[plugins]]
-# ポップアップウィンドウを表示するプラグイン
-repo = 'Shougo/pum.vim'
-hook_source = '''
-source ~/.config/nvim/plugins/pum.vim
-" source ./plugins/pum.vim
-'''
 
 [[plugins]]
 repo = 'roxma/nvim-yarp'

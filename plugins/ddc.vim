@@ -38,5 +38,6 @@ call ddc#custom#patch_global('sourceOptions', {
  \   'isVolatile': v:true, 
  \   'forceCompletionPattern': '\S/\S*'
  \ }})
+
 call ddc#enable()
 

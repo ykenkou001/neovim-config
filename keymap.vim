@@ -1,6 +1,3 @@
-" myfunction.vimの呼び出し
-" runtime! ~/.config/nvim/myfunction.vim
-
 let g:mapleader = "\<Space>"         " Leader Keyの設定
 nmap <Esc><Esc> :nohlsearch<CR><Esc> " ESC連打でハイライト解除
 inoremap <silent> jk <ESC>
@@ -29,12 +26,12 @@ tnoremap <ESC> <C-\><C-n>
 inoremap <expr> { InputParentheses("{")
 inoremap <expr> [ InputParentheses("[")
 inoremap <expr> ( InputParentheses("(")
-inoremap <expr> < InputParentheses("<")
+" inoremap <expr> < InputParentheses("<")
 " 閉じ括弧の入力
 inoremap <expr> } InputCloseParenthesis("}")
 inoremap <expr> ] InputCloseParenthesis("]")
 inoremap <expr> ) InputCloseParenthesis(")")
-inoremap <expr> > InputCloseParenthesis(">")
+" inoremap <expr> > InputCloseParenthesis(">")
 " クォーテーションの入力
 inoremap <expr> ' InputQuot("\'")
 inoremap <expr> " InputQuot("\"")
