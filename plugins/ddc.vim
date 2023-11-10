@@ -15,7 +15,11 @@ if executable('vim-language-server')
         \ })
 endif
 
-call ddc#custom#patch_global('ui', 'pum.vim')
+call ddc_nvim_lsp_setup#setup()
+
+call lspconfig#denols#setup()
+
+call ddc#custom#patch_global('up', 'pum.vim')
 call ddc#custom#patch_global('sources', [
  \ 'around',
  \ 'nvim-lsp',
@@ -31,13 +35,23 @@ call ddc#custom#patch_global('sourceOptions', {
  \ 'nvim-lsp': {
  \   'mark': 'LSP', 
  \   'matchers': ['matcher_head'],
- \   'forceCompletionPattern': '\.|:|->|"\w+/*'
+ \   'forceCompletionPattern': '\.\w*|:\w*|->\w*',
  \ },
  \ 'file': {
  \   'mark': 'file',
  \   'isVolatile': v:true, 
  \   'forceCompletionPattern': '\S/\S*'
  \ }})
+call ddc#custom#patch_global('sourceParams', #{
+      \   nvim-lsp: #{
+      \     snippetEngine: denops#callback#register({
+      \           body -> vsnip#anonymous(body)
+      \     }),
+      \     enableResolveItem: v:true,
+      \     enableAdditionalTextEdit: v:true,
+      \   }
+      \ })
+ " \   'forceCompletionPattern': '\.|:|->|"\w+/*',
 
 call ddc#enable()
 

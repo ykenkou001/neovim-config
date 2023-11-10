@@ -64,28 +64,8 @@ hook_add = '''
 repo = 'simeji/winresizer'
 
 [[plugins]]
-# ポップアップウィンドウを表示するプラグイン
-repo = 'Shougo/pum.vim'
-hook_source = '''
-source ~/.config/nvim/plugins/pum.vim
-" source ./plugins/pum.vim
-'''
-
-[[plugins]]
-# ddc.vim本体
-repo = 'Shougo/ddc.vim'
-hook_source = '''
-source ~/.config/nvim/plugins/ddc.vim
-" source ./plugins/ddc.vim
-'''
-
-[[plugins]]
-# DenoでVimプラグインを開発するためのプラグイン
-repo = 'vim-denops/denops.vim'
-
-# [[plugins]]
-# # vim-lsp
-# repo = 'prabirshrestha/vim-lsp'
+# vim-lsp
+repo = 'prabirshrestha/vim-lsp'
 
 [[plugins]]
 # vim-settings
@@ -94,6 +74,9 @@ repo = 'mattn/vim-lsp-settings'
 [[plugins]]
 # nvim-lspconfig
 repo = 'neovim/nvim-lspconfig'
+
+[[plugins]]
+repo = 'uga-rosa/ddc-nvim-lsp-setup'
 
 [[plugins]]
 # ddc-source-nvim-lsp
@@ -108,7 +91,6 @@ repo = 'roxma/vim-hug-neovim-rpc'
 [[plugins]]
 # wild menuにおける補完
 repo = 'gelguy/wilder.nvim'
-# hook_source = '''
 hook_add = '''
 " Default keys
 call wilder#setup({
@@ -119,6 +101,18 @@ call wilder#setup({
       \ 'reject_key': '<Up>',
       \ })
 '''
+
+[[plugins]]
+# ddc.vim本体
+repo = 'Shougo/ddc.vim'
+hook_source = '''
+source ~/.config/nvim/plugins/ddc.vim
+" source ./plugins/ddc.vim
+'''
+
+[[plugins]]
+# DenoでVimプラグインを開発するためのプラグイン
+repo = 'vim-denops/denops.vim'
 
 [[plugins]]
 # カーソル周辺の既出単語を補完するsource
@@ -139,4 +133,15 @@ repo = 'Shougo/ddc-sorter_rank'
 [[plugins]]
 # 補完候補の重複を防ぐためのfilter
 repo = 'Shougo/ddc-converter_remove_overlap'
+
+[[plugins]]
+# ポップアップウィンドウを表示するプラグイン
+repo = 'Shougo/pum.vim'
+hook_source = '''
+source ~/.config/nvim/plugins/pum.vim
+" source ./plugins/pum.vim
+'''
+
+[[plugins]]
+repo = 'Shougo/ddc-ui-native'
 

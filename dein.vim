@@ -26,11 +26,12 @@ if dein#load_state(s:dein_dir)
         " TOMLを読み込み、キャッシュする
         call dein#load_toml(s:toml_file, {'lazy': 0})
         call dein#load_toml(s:lazy_toml, {'lazy': 1})
-
+        
         " 不足プラグインの自動インストール
         if has('vim_starting') && dein#check_install()
             call dein#install()
         endif
+
     endif
     " Finish Dein initialization (required)
     call dein#end()

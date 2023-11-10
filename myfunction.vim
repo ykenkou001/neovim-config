@@ -262,3 +262,45 @@ endfunction
 " 新しいファイルを作成するコマンドを設定
 command! CreateCMakeOpencv call CreateCMakeListsOpencv()
 
+" c++で F5 でバッファを保存後にOpenCVを使いビルド＆実行
+function! BuildAndRunCPlusPlus()
+    let build_dir = "build"
+    let source_file = expand('%')  " 現在開いているファイルのフルパス
+    " let grandparent_dir = expand('%:p:h:h')
+    let exec_file = fnamemodify(source_file, ':r')  " 実行ファイル名（拡張子なし）
+    let opencv_include = "/usr/include/opencv4"  " OpenCVのインクルードパス
+    let opencv_libs = "-lopencv_core -lopencv_imgproc -lopencv_highgui -lopencv_imgcodecs -lopencv_videoio"  " OpenCVのライブラリリンク
+
+    " ビルドディレクトリが存在しない場合、作成
+    if !isdirectory(build_dir)
+        call mkdir(build_dir)
+    endif
+
+    " ビルドコマンドを生成
+    let build_cmd = "g++ -std=c++17 -o " . build_dir . "/" . exec_file . " " . source_file . " ../include/utils.cpp"
+    let build_cmd .= " -I" . opencv_include . " " . opencv_libs
+
+    echo "Building..."
+    let build_result = system(build_cmd)
+    if v:shell_error == 0
+        echo "Build successful."
+        let exec_path = "./" . build_dir . "/" . exec_file
+        if filereadable(exec_path)
+            echo "Running..."
+            let run_result = system(exec_path)
+            echo run_result
+        else
+            echohl ErrorMsg
+            echo "Error: Executable file not found."
+            echohl None
+        endif
+    else
+        echohl ErrorMsg
+        echo "Build failed with error: " . build_result
+        echohl None
+    endif
+endfunction
+
+" マッピングを追加して関数を呼び出しやすくする
+nnoremap <F5> :w<CR>:call BuildAndRunCPlusPlus()<CR>
+
