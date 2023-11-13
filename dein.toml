@@ -105,7 +105,7 @@ call wilder#setup({
 [[plugins]]
 # ddc.vim本体
 repo = 'Shougo/ddc.vim'
-hook_source = '''
+hook_add = '''
 source ~/.config/nvim/plugins/ddc.vim
 " source ./plugins/ddc.vim
 '''
@@ -135,9 +135,12 @@ repo = 'Shougo/ddc-sorter_rank'
 repo = 'Shougo/ddc-converter_remove_overlap'
 
 [[plugins]]
+repo = 'Shougo/ddc-ui-pum'
+
+[[plugins]]
 # ポップアップウィンドウを表示するプラグイン
 repo = 'Shougo/pum.vim'
-hook_source = '''
+hook_add = '''
 source ~/.config/nvim/plugins/pum.vim
 " source ./plugins/pum.vim
 '''

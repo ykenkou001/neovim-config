@@ -15,11 +15,11 @@ if executable('vim-language-server')
         \ })
 endif
 
-call ddc_nvim_lsp_setup#setup()
+" call ddc_nvim_lsp_setup#setup()
 
-call lspconfig#denols#setup()
+" call lspconfig#denols#setup()
 
-call ddc#custom#patch_global('up', 'pum.vim')
+call ddc#custom#patch_global('ui', 'pum')
 call ddc#custom#patch_global('sources', [
  \ 'around',
  \ 'nvim-lsp',
