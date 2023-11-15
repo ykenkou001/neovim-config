@@ -307,18 +307,25 @@ nnoremap <F5> :w<CR>:call BuildAndRunCPlusPlus()<CR>
 
 " C++で右ウィンドウにterminalが開かれている状態で、terminalに移動し、
 " コンパイル・実行する関数
-function! CompileAndRunCppInRightTerminal()
-    " 現在のバッファを保存
-    write
+function! CompileAndRunCpp()
+    " 現在のファイル名とその基本部分を取得し保存
+    let current_file = expand('%:p')
+    let file_base = expand('%:r')
 
-    " 右側のウィンドウに移動（存在する場合）
+    " 現在のバッファを保存
+    w
+
+    " 右側のウィンドウに移動
     wincmd l
 
-    " ウィンドウがターミナルであることを確認
-    if &buftype == 'terminal'
-        " コンパイルコマンドを実行
-        call feedkeys("g++ -I/usr/include/opencv4 % -std=c++17 -o ./build/%< -lopencv_core -lopencv_imgcodecs -lopencv_highgui -lopencv_imgproc -lopencv_videoio && ./build/%<\n")
+    " ウィンドウがターミナルでない場合、新しいターミナルを開く
+    if &buftype !=# 'terminal'
+        vnew | terminal
     endif
+
+    " コンパイルコマンドをターミナルに送信
+    call feedkeys("g++ " . current_file . " -o " . file_base . " && ./" . file_base . "\r")
 endfunction
 
-nnoremap <C-A-n> :call CompileAndRunCppInRightTerminal()<CR>
+" キーマッピング
+nnoremap <C-A-n> :call CompileAndRunCpp()<CR>
