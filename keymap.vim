@@ -1,5 +1,5 @@
 let g:mapleader = "\<Space>"         " Leader Keyの設定
-nmap <Esc><Esc> :nohlsearch<CR><Esc> " ESC連打でハイライト解除
+map <Esc><Esc> :nohlsearch<CR><Esc> " ESC連打でハイライト解除
 inoremap <silent> jk <ESC>
 inoremap <silent> jj <ESC>
 

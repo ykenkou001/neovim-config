@@ -142,9 +142,19 @@ repo = 'Shougo/ddc-ui-pum'
 repo = 'Shougo/pum.vim'
 hook_add = '''
 source ~/.config/nvim/plugins/pum.vim
-" source ./plugins/pum.vim
 '''
 
-[[plugins]]
-repo = 'Shougo/ddc-ui-native'
+# [[plugins]]
+# repo = 'Shougo/ddc-ui-native'
 
+[[plugins]]
+# C++用フォーマッター
+repo = 'rhysd/vim-clang-format'
+hook_source = '''
+source ~/.config/nvim/plugins/vim_clang_format.vim
+'''
+depends = ['kana/vim-operator-user']
+
+[[plugins]]
+# 独自のoperatorを定義する
+repo = 'kana/vim-operator-user'

@@ -277,7 +277,8 @@ function! BuildAndRunCPlusPlus()
     endif
 
     " ビルドコマンドを生成
-    let build_cmd = "g++ -std=c++17 -o " . build_dir . "/" . exec_file . " " . source_file . " ../include/utils.cpp"
+    let build_cmd = "g++ -std=c++17 -o " . build_dir . "/" . exec_file . " " . source_file
+    " let build_cmd = "g++ -std=c++17 -o " . build_dir . "/" . exec_file . " " . source_file . " ../include/utils.cpp"
     let build_cmd .= " -I" . opencv_include . " " . opencv_libs
 
     echo "Building..."
@@ -304,3 +305,20 @@ endfunction
 " マッピングを追加して関数を呼び出しやすくする
 nnoremap <F5> :w<CR>:call BuildAndRunCPlusPlus()<CR>
 
+" C++で右ウィンドウにterminalが開かれている状態で、terminalに移動し、
+" コンパイル・実行する関数
+function! CompileAndRunCppInRightTerminal()
+    " 現在のバッファを保存
+    write
+
+    " 右側のウィンドウに移動（存在する場合）
+    wincmd l
+
+    " ウィンドウがターミナルであることを確認
+    if &buftype == 'terminal'
+        " コンパイルコマンドを実行
+        call feedkeys("g++ -I/usr/include/opencv4 % -std=c++17 -o ./build/%< -lopencv_core -lopencv_imgcodecs -lopencv_highgui -lopencv_imgproc -lopencv_videoio && ./build/%<\n")
+    endif
+endfunction
+
+nnoremap <C-A-n> :call CompileAndRunCppInRightTerminal()<CR>
