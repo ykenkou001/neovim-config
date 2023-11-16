@@ -33,6 +33,7 @@ set clipboard+=unnamedplus  " clipboardオプション
 set splitbelow              " newWindowが下
 set splitright              " newWindowが右
 set backspace=indent,eol,start
+" autocmd BufNewFile,BufRead * :vnew | terminal " 新たにバッファを開くと自動的に右側のウィンドウでターミナルが開く
 
 " ################# ログ ##################################
 set history=500 "保持するコマンド履歴の数

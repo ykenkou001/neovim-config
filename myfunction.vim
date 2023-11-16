@@ -308,7 +308,6 @@ nnoremap <F5> :w<CR>:call BuildAndRunCPlusPlus()<CR>
 " C++で右ウィンドウにterminalが開かれている状態で、terminalに移動し、
 " コンパイル・実行する関数
 function! CompileAndRunCpp()
-    
     " map to <Leader>cf in C++ code
     autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
 
@@ -327,18 +326,16 @@ function! CompileAndRunCpp()
         vnew | terminal
     endif
 
+    " インサートモードに入る
+    call feedkeys("i")
+
     " コンパイルコマンドをターミナルに送信
-    call feedkeys(
-        \"g++ -I/usr/include/opencv4 " 
-        \. current_file 
-        \. " -std=c++17 -o ./build/"
-        \. file_base 
-        \. " -lopencv_core -lopencv_imgcodecs -lopencv_highgui "
-        \. " -lopencv_imgproc -lopencv_videoio "
-        \. " && ./build/" 
-        \. file_base 
-        \. "\r"
-        \)
+    " 空白や変数の結合には正しいエスケープを使います
+    let compile_command = 'g++ -I/usr/include/opencv4 ' . current_file . ' -std=c++17 -o ./build/' . file_base . ' -lopencv_core -lopencv_imgcodecs -lopencv_highgui -lopencv_imgproc -lopencv_videoio && ./build/' . file_base
+    call feedkeys("\<CR>") " Enterを送信
+    call feedkeys(compile_command) " コンパイルコマンドを送信
+    call feedkeys("\<CR>") " Enterを送信
+
 endfunction
 
 " キーマッピング
