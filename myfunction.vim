@@ -308,6 +308,10 @@ nnoremap <F5> :w<CR>:call BuildAndRunCPlusPlus()<CR>
 " C++で右ウィンドウにterminalが開かれている状態で、terminalに移動し、
 " コンパイル・実行する関数
 function! CompileAndRunCpp()
+    
+    " map to <Leader>cf in C++ code
+    autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+
     " 現在のファイル名とその基本部分を取得し保存
     let current_file = expand('%:p')
     let file_base = expand('%:r')
@@ -324,7 +328,17 @@ function! CompileAndRunCpp()
     endif
 
     " コンパイルコマンドをターミナルに送信
-    call feedkeys("g++ " . current_file . " -o " . file_base . " && ./" . file_base . "\r")
+    call feedkeys(
+        \"g++ -I/usr/include/opencv4 " 
+        \. current_file 
+        \. " -std=c++17 -o ./build/"
+        \. file_base 
+        \. " -lopencv_core -lopencv_imgcodecs -lopencv_highgui "
+        \. " -lopencv_imgproc -lopencv_videoio "
+        \. " && ./build/" 
+        \. file_base 
+        \. "\r"
+        \)
 endfunction
 
 " キーマッピング
