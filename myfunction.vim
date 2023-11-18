@@ -331,7 +331,12 @@ function! CompileAndRunCpp()
 
     " コンパイルコマンドをターミナルに送信
     " 空白や変数の結合には正しいエスケープを使います
-    let compile_command = 'g++ -I/usr/include/opencv4 ' . current_file . ' -std=c++17 -o ./build/' . file_base . ' -lopencv_core -lopencv_imgcodecs -lopencv_highgui -lopencv_imgproc -lopencv_videoio && ./build/' . file_base
+    let compile_command = 'g++ -I/usr/include/opencv4 ' 
+                          \ . current_file 
+                          \ . ' ../include/utils.cpp -std=c++17 -o ./build/' 
+                          \ . file_base
+                          \ . ' -lopencv_core -lopencv_imgcodecs -lopencv_highgui -lopencv_imgproc -lopencv_videoio && ./build/' 
+                          \. file_base
     call feedkeys("\<CR>") " Enterを送信
     call feedkeys(compile_command) " コンパイルコマンドを送信
     call feedkeys("\<CR>") " Enterを送信

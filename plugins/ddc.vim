@@ -15,9 +15,14 @@ if executable('vim-language-server')
         \ })
 endif
 
-" call ddc_nvim_lsp_setup#setup()
+lua << EOF
 
-" call lspconfig#denols#setup()
+local capabilities = require("ddc_nvim_lsp").make_client_capabilities()
+require("lspconfig").denols.setup({
+  capabilities = capabilities,
+})
+
+EOF
 
 call ddc#custom#patch_global('ui', 'pum')
 call ddc#custom#patch_global('sources', [
@@ -42,6 +47,7 @@ call ddc#custom#patch_global('sourceOptions', {
  \   'isVolatile': v:true, 
  \   'forceCompletionPattern': '\S/\S*'
  \ }})
+
 call ddc#custom#patch_global('sourceParams', #{
       \   nvim-lsp: #{
       \     snippetEngine: denops#callback#register({
@@ -51,7 +57,6 @@ call ddc#custom#patch_global('sourceParams', #{
       \     enableAdditionalTextEdit: v:true,
       \   }
       \ })
- " \   'forceCompletionPattern': '\.|:|->|"\w+/*',
 
 call ddc#enable()
 
