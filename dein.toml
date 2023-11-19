@@ -67,9 +67,9 @@ repo = 'simeji/winresizer'
 # vim-lsp
 repo = 'prabirshrestha/vim-lsp'
 
-[[plugins]]
-# vim-settings
-repo = 'mattn/vim-lsp-settings'
+# [[plugins]]
+# # vim-settings
+# repo = 'mattn/vim-lsp-settings'
 
 [[plugins]]
 # nvim-lspconfig
@@ -85,6 +85,7 @@ repo = 'uga-rosa/ddc-nvim-lsp-setup'
 # ddc-source-nvim-lsp
 repo = 'Shougo/ddc-source-nvim-lsp'
 hook_add = '''
+
 lua << EOF
 
 local capabilities = require("ddc_nvim_lsp").make_client_capabilities()
@@ -94,25 +95,11 @@ require("lspconfig").denols.setup({
 
 require("ddc_nvim_lsp_setup").setup()
 
+vim.fn["denops#callback#register"](function(body)
+require('snippy').expand_snippet(body)
+end)
+
 EOF
-
-call ddc#custom#patch_global('sources', ['nvim-lsp'])
-call ddc#custom#patch_global('sourceOptions', #{
-      \   nvim-lsp: #{
-      \     mark: 'lsp',
-      \     forceCompletionPattern: '\.\w*|:\w*|->\w*',
-      \   },
-      \ })
-
-call ddc#custom#patch_global('sourceParams', #{
-      \   nvim-lsp: #{
-      \     snippetEngine: denops#callback#register({
-      \           body -> vsnip#anonymous(body)
-      \     }),
-      \     enableResolveItem: v:true,
-      \     enableAdditionalTextEdit: v:true,
-      \   }
-      \ })
 '''
 
 [[plugins]]
@@ -178,6 +165,10 @@ source ~/.config/nvim/plugins/pum.vim
 '''
 
 [[plugins]]
+# 独自のoperatorを定義する
+repo = 'kana/vim-operator-user'
+
+[[plugins]]
 # C++用フォーマッター
 repo = 'rhysd/vim-clang-format'
 hook_add = '''
@@ -185,12 +176,19 @@ source ~/.config/nvim/plugins/vim_clang_format.vim
 '''
 
 [[plugins]]
-# 独自のoperatorを定義する
-repo = 'kana/vim-operator-user'
-
-[[plugins]]
 # DeepL
 repo = 'ryicoh/deepl.vim'
 hook_add = '''
 source ~/.config/nvim/plugins/deepl.vim
 '''
+
+[[plugins]]
+# nvim-snippy,ミニマルでシンプルなスニペットマネージャーとして機能を完備しています。
+repo = 'dcampos/nvim-snippy'
+# hook_add = '''
+# source = ~/.config/nvim/plugins/nvim-snippy.vim
+# '''
+
+[[plugins]]
+# Snippet files
+repo = 'honza/vim-snippets'
