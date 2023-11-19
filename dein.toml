@@ -64,18 +64,29 @@ hook_add = '''
 repo = 'simeji/winresizer'
 
 [[plugins]]
-# vim-lsp
-repo = 'prabirshrestha/vim-lsp'
-
-# [[plugins]]
-# # vim-settings
-# repo = 'mattn/vim-lsp-settings'
-
-[[plugins]]
 # nvim-lspconfig
 repo = 'neovim/nvim-lspconfig'
 hook_add = '''
 source ~/.config/nvim/plugins/nvim-lspconfig.vim
+'''
+
+[[plugins]]
+# パッケージマネージャー
+# LS、debugger、formatter、linter とかのインストールを簡単にするもの
+repo = 'williamboman/mason.nvim'
+# hook_add = '''
+# lua << EOF
+
+# require("mason").setup()
+
+# EOF
+# '''
+
+[[plugins]]
+# mason.nvim と nvim.nvim の間に存在するギャップを埋めるもの
+repo = 'williamboman/mason-lspconfig.nvim'
+hook_add = '''
+source ~/.config/nvim/plugins/mason-lspconfig.vim
 '''
 
 [[plugins]]
