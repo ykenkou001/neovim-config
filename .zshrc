@@ -60,7 +60,6 @@ setopt no_beep
 # cd -で以前移動したディレクトリを表示
 setopt auto_pushd
 
-
 # コマンドを途中まで入力後、historyから絞り込み
 autoload -Uz history-search-end
 zle -N history-beginning-search-backward-end history-search-end
@@ -71,6 +70,7 @@ bindkey "^N" history-beginning-search-forward-end
 # lsコマンドのalias関連
 alias nv='nvim'
 alias d='docker'
+alias cl='clear'
 
 # powerlevel10k setting
 zinit ice depth=1; zinit light romkatv/powerlevel10k
@@ -95,3 +95,17 @@ zinit light zsh-users/zsh-syntax-highlighting
 # Enviroment Paths.
 # export PATH="$PATH:$HOME/.local/bin"
 
+export DENO_INSTALL="/home/ykenkou07/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
+# pyenv
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init - zsh --no-rehash)"
+eval "$(pyenv virtualenv-init -)"
+
+# poetry 
+export PATH="/home/ykenkou07/.local/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
