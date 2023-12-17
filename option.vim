@@ -2,10 +2,11 @@
 set list listchars=tab:\▸\- " 不可視文字を可視化(タブが「▸-」と表示される)
 set number                  " Row Number
 set relativenumber          " カーソル位置からの相対的な行番号
-set title                   " ターミナルのタブ名に現在編集中のファイル名を設定
 set title                   " ウインドウのタイトルバーにファイルのパス情報等を表示する
 " set cursorline              " 現在の行を強調表示
 setlocal matchpairs+=<:>    " <>もハイライト
+set pumblend=20             " popupの透過率の設定
+set termguicolors           " 
 
 " ################# 検索系・置換 ##################################
 set ignorecase " 検索文字列が小文字の場合は大文字小文字を区別なく検索する
@@ -32,7 +33,7 @@ set wildoptions+=pum        " pum.vim。pop up windowを表示する
 set clipboard+=unnamedplus  " clipboardオプション
 set splitbelow              " newWindowが下
 set splitright              " newWindowが右
-set backspace=indent,eol,start
+set backspace=indent,eol,start " backspaceを有効
 set autochdir
 " autocmd BufNewFile,BufRead * :vnew | terminal " 新たにバッファを開くと自動的に右側のウィンドウでターミナルが開く
 
@@ -54,9 +55,3 @@ set visualbell              " ビープ音を可視化
 
 autocmd BufNewFile ~/*.cpp :0r ~/.config/nvim/template/c++ " c++用のテンプレ
 autocmd BufNewFile makefile :0r ~/.config/nvim/template/makefile " makefile用のテンプレ
-" main.cppが作成されたらどう階層にCMakeLists.txtを作成する
-" augroup create_main_cpp
-"   autocmd!
-"   autocmd BufNewFile main.cpp call CreateCMakeLists()
-" augroup END
-
