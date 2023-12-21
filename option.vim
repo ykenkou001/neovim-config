@@ -60,3 +60,5 @@ autocmd BufNewFile makefile :0r ~/.config/nvim/template/makefile " makefileç”¨ã
 "   autocmd BufNewFile main.cpp call CreateCMakeLists()
 " augroup END
 
+" testtttttttt
+
