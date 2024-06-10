@@ -1,0 +1,180 @@
+{
+    "workbench.iconTheme": "material-icon-theme",
+    "files.autoSave": "afterDelay",
+    "python.analysis.typeCheckingMode": "basic",
+    "python.languageServer": "Pylance",
+    "python.analysis.extraPaths": [
+        "DoNotTouchThisFolder"
+    ],
+    "files.exclude": {
+        "**/*:Zone.Identifier": true,
+    },
+    "python.autoComplete.extraPaths": [],
+    "editor.formatOnSave": true,
+    "editor.wordWrapColumn": 79,
+    "editor.wordWrap": "off",
+    "python.analysis.completeFunctionParens": true,
+    "editor.tokenColorCustomizations": {
+        "[Default Dark+]": {
+            "comments": "#93a386"
+        },
+        "[Monokai]": {
+            "comments": "#c5cfc5",
+        },
+    },
+    "workbench.colorCustomizations": {
+        "[Default Dark+]": {
+            "editor.background": "#342f2f",
+            "editor.wordHighlightBackground": "#727070",
+            "editor.wordHighlightStrongBackground": "#727070",
+            "editor.selectionBackground": "#7e6d6d",
+            "editor.selectionHighlightBackground": "#527c59",
+            "editor.lineHighlightBackground": "#383455",
+            "tab.activeBackground": "#645e5e"
+        },
+        "[Monokai]": {
+            "editor.wordHighlightBackground": "#867d7d",
+            "editor.wordHighlightStrongBackground": "#9b9292",
+            "editor.selectionBackground": "#d63737",
+            "editor.selectionHighlightBackground": "#4b7e54",
+            "editor.lineHighlightBackground": "#383455",
+            "notebook.selectedCellBackground": "#ceb3b3"
+        }
+    },
+    "editor.inlineSuggest.enabled": true,
+    "gitlens.views.repositories.branches.layout": "list",
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+    },
+    "gitlens.views.branches.files.layout": "list",
+    "[json]": {
+        "editor.quickSuggestions": {
+            "strings": true
+        },
+        "editor.suggest.insertMode": "replace",
+        "gitlens.codeLens.scopes": [
+            "document"
+        ]
+    },
+    "files.associations": {
+        "*.py": "python"
+    },
+    "[python]": {
+        "gitlens.codeLens.symbolScopes": [
+            "!Module"
+        ],
+        "editor.wordBasedSuggestions": "off",
+        "editor.formatOnType": true,
+        "editor.defaultFormatter": "ms-python.autopep8",
+        "editor.formatOnSave": true,
+    },
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "right"
+    },
+    "notebook.lineNumbers": "on",
+    "notebook.output.textLineLimit": 500,
+    "gitlens.advanced.messages": {
+        "suppressGitMissingWarning": true
+    },
+    "editor.unicodeHighlight.nonBasicASCII": false,
+    "scm.inputFontSize": 14,
+    "terminal.integrated.fontSize": 15,
+    "githubPullRequests.createOnPublishBranch": "never",
+    "markdown.preview.fontSize": 15,
+    "remote.SSH.defaultExtensions": [
+        "njpwerner.autodocstring",
+        "GitHub.copilot",
+        "oderwat.indent-rainbow",
+        "MS-CEINTL.vscode-language-pack-ja",
+        "ms-toolsai.jupyter-renderers",
+        "ionutvmi.path-autocomplete",
+        "ms-python.vscode-pylance",
+        "ms-python.python",
+        "KevinRose.vsc-python-indent",
+        "himanoa.Python-autopep8",
+        "TabNine.tabnine-vscode",
+        "tomoki1207.pdf",
+        "ms-toolsai.jupyter-keymap",
+        "eamodio.gitlens",
+        "njqdev.vscode-python-typehint",
+        "GitHub.vscode-pull-request-github",
+        "donjayamanne.githistory"
+    ],
+    "files.watcherExclude": {
+        "**/MyDrive/**": true,
+        "/content/drive/MyDrive/**": true
+    },
+    "editor.suggest.showMethods": true,
+    "editor.suggest.preview": true,
+    "editor.acceptSuggestionOnEnter": "on",
+    "editor.snippetSuggestions": "top",
+    "editor.rulers": [
+        79
+    ],
+    "githubPullRequests.fileListLayout": "flat",
+    "githubPullRequests.pullBranch": "never",
+    "editor.minimap.enabled": false,
+    "jupyter.askForKernelRestart": false,
+    "notebook.editorOptionsCustomizations": {},
+    "editor.hover.enabled": true,
+    "editor.fontWeight": 500,
+    "editor.fontSize": 14,
+    "editor.accessibilitySupport": "off",
+    "editor.folding": true,
+    "editor.foldingStrategy": "indentation",
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    // R settings ------------------------------------------------------------
+    "[r]": {
+        "files.encoding": "utf8"
+    },
+    // R settings ------------------------------------------------------------
+    "editor.renderControlCharacters": true,
+    "remote.SSH.configFile": "\"\\\\wsl.localhost\\Ubuntu-22.04\\home\\ykenkou07\\.ssh\\config\\\"",
+    "remote.SSH.remotePlatform": {
+        "ec2-3-112-231-99.ap-northeast-1.compute.amazonaws.com": "linux"
+    },
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "remote.SSH.path": "//wsl.localhost/Ubuntu-22.04/home/ykenkou07/colab-ssh.bat",
+    "terminal.integrated.confirmOnKill": "panel",
+    "vscode-neovim.neovimExecutablePaths.linux": "/usr/local/bin/nvim",
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell"
+        },
+        "Command Prompt": {
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+            ],
+            "args": [],
+            "icon": "terminal-cmd"
+        },
+        "Git Bash": {
+            "source": "Git Bash"
+        },
+        "Ubuntu-20.04 (WSL)": {
+            "path": "C:\\WINDOWS\\System32\\wsl.exe",
+            "args": [
+                "-d",
+                "Ubuntu-20.04"
+            ]
+        }
+    },
+    "terminal.integrated.defaultProfile.windows": "Ubuntu-20.04 (WSL)",
+    "cmake.configureOnOpen": false,
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "vscode-neovim.useWSL": true,
+    "gitlens.ai.experimental.provider": "openai",
+    // "gitlens.ai.experimental.openai.model": "gpt-4-1106-preview",
+    "git.openRepositoryInParentFolders": "never",
+    "deepl.formality": "default",
+    "deepl.tagHandling": "off",
+    "deepl.splitSentences": "1",
+    "deepl.translationMode": "Replace",
+    "editor.lineNumbers": "relative"
+}
